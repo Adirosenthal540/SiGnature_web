@@ -15,7 +15,7 @@
 <a href="https://www.youtube.com/watch?v=D5cy8M1RekU"><img src="https://img.shields.io/badge/Video-YouTube-FF0000?logo=youtube" height=20.5></a>
 
 ## 🔥 NEWS
-**`2026/06/21`**: SiGnature was accepted to SCA 2026!
+**`2026/06`**: SiGnature was accepted to SCA 2026!
 
 ## Abstract
 
