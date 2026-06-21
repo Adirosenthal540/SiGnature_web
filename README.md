@@ -1,52 +1,46 @@
-# LightLab: Controlling Light Sources in Images with Diffusion Models
+# SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation
 
 <p align="center">
-<img src="./static/images/teaser_v6.png" width="800px"/>
+<img src="./images/image_guidelines.jpg" width="800px"/>
 </p>
 
-#### Nadav Magar, Amir Hertz, Eric Tabellion, Yael Pritch, Alex Rav-Acha, Ariel Shamir, Yedid Hoshen*
+### Adi Rosenthal, Tomer Koren, Nadav Shaked, Doron Friedman*, Ariel Shamir*
 
-> Controlling light sources in an image is a fundamental aspect of photography that affects the subject, depth separation, colors, and mood of the image. Existing relighting methods either rely on multiple input views to perform inverse rendering at inference time, or fail to provide explicit control.
+**Reichman University**
+<!-- 
+**SCA 2026** -->
 
-We present a diffusion-based method for fine-grained, parametric control over light sources from a single image. Our method can change the intensity and color of visible light sources, the intensity of ambient lighting, and can insert virtual light source into the scene. We propose using the diffusion model's photorealistic prior to implicitly simulate complex light effects such as indirect illumination, shadows, and reflections, directly in image space, using paired examples depicting controlled illumination changes.
-
-We generate such examples using a combination of a small set of raw photograph pairs supplemented by a large set of synthetically rendered images. By leveraging the linearity of light, we disentangle a target light from the scenes ambient lighting, and then generate a parametric sequence of images with varying light intensities and colors.
-
-Our method generates physically plausible lighting edits across diverse settings, and outperforms existing methods quantitatively and based on user preference.
-
-<a href=""><img src="https://img.shields.io/badge/arXiv-2412.06753-b31b1b.svg"></a>
-<a href="https://nadmag.github.io/LightLab/"><img src="https://img.shields.io/static/v1?label=Project&message=Website&color=red" height=20.5></a> 
-
-
+<a href="https://www.arxiv.org/abs/2606.15889"><img src="https://img.shields.io/badge/arXiv-2606.15889-b31b1b.svg"></a>
+<a href="https://adirosenthal540.github.io/SiGnature_web/"><img src="https://img.shields.io/static/v1?label=Project&message=Website&color=red" height=20.5></a>
+<a href="https://www.youtube.com/watch?v=D5cy8M1RekU"><img src="https://img.shields.io/badge/Video-YouTube-FF0000?logo=youtube" height=20.5></a>
 
 ## 🔥 NEWS
-**`2025/05/06`**: LightLab was accepted to SIGGRAPH 25!
+**`2026/06/21`**: SiGnature was accepted to SCA 2026!
 
-**`2025/05/06`**: Paper is out!
+## Abstract
 
-<!-- ## Table of Contents
-- [Examples](#examples)
-- [Citation](#citation)
+While recent advances in co-speech gesture generation have achieved impressive rhythmic synchronization, synthesizing gestures that are both semantically meaningful and faithful to a speaker's unique non-verbal style remains an open challenge. Semantic gestures, such as iconic shapes or deictic pointing, are statistically sparse, making them difficult to learn effectively within standard generative models.
 
+We present **SiGnature**, a framework for Stylized and Semantic Gesture generation that reconciles precise semantic control with high-fidelity style preservation. Unlike prevalent methods that rely on entangled latent representations, SiGnature operates in an explicit joint-rotation space. This design enables our core contribution, **Joint Motion Integration (JMI)**, a training-free inference mechanism capable of injecting any external motion sequence directly into the diffusion process.
 
-## Examples
-Here are some example outputs:
+<!-- ## Project Page
 
-<p align="center">
-<img src="docs/examples_generation_1.jpg" width="800px"/>  
-<br>
-<p align="center">
-<img src="docs/examples_dropout_rooster.jpg" width="700px"/>  
-<br>
-<p align="center">
-<img src="docs/examples_dropout_bunny.jpg" width="700px"/>  
-<br>
-<p align="center">
-<img src="docs/examples_dropout_astronaut.jpg" width="700px"/>  
-<br>
-<p align="center">
-<img src="docs/examples_control_color_sydney.jpg" width="700px"/>  
-<br>
-<p align="center">
-<img src="docs/examples_sketches_margarita.jpg" width="700px"/>  
-<br> -->
+This repository hosts the project page for SiGnature. To view it locally:
+
+```bash
+# Using Python's built-in server
+python -m http.server 8000
+
+# Then open http://localhost:8000 in your browser
+``` -->
+
+## Citation
+
+```bibtex
+@inproceedings{Rosenthal2026SiGnature,
+  Author = {Adi Rosenthal and Tomer Koren and Nadav Shaked and Doron Friedman and Ariel Shamir},
+  Title = {SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation},
+  Year = {2026},
+  Eprint = {arXiv:2606.15889},
+}
+```
