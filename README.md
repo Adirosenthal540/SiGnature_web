@@ -37,7 +37,7 @@ python -m http.server 8000
 ## Citation
 
 ```bibtex
-@inproceedings{Rosenthal2026SiGnature,
+@article{Rosenthal2026SiGnature,
   Author = {Adi Rosenthal and Tomer Koren and Nadav Shaked and Doron Friedman and Ariel Shamir},
   Title = {SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation},
   Year = {2026},
