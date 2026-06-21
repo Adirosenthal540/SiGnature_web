@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(ls /home/adi_rosenthal/code/SiGnature_web/images/same_utterance_videos/*.mp4 2>/dev/null | wc -l; grep -c \"Rendering\\\\|EXISTS\" /tmp/render_same_utterance.log)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation">
+  <meta name="keywords" content="gesture generation, motion diffusion, semantic gesture generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">SiGnature: Explicit Motion Diffusion<br>for Stylized Semantic
+              Gesture
+              Generation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=iw&user=gHyhr2MAAAAJ">Adi Rosenthal</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/Tomerkoren1">Tomer Koren</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=iw&user=mqOxreQAAAAJ">Nadav Shaked</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.runi.ac.il/en/faculty/doronf">Doron Friedman</a><sup>* </sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://faculty.runi.ac.il/arik/site/index.asp">Ariel Shamir</a><sup>* </sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup></sup>Reichman University</span>
+            </div>
+
+
+            <div class="is-size-3 publication-authors" style="margin-top: 10px;">
+              <span class="author-block">
+                <b>SCA 2026</b>
+                <!-- <b style="color: #b30000;">SCA 2026</b> -->
+              </span>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://www.arxiv.org/abs/2606.15889"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <span class="link-block">
+                  <a href="https://www.arxiv.org/abs/2606.15889"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=D5cy8M1RekU"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/Adirosenthal540/SiGnature_model"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code - Coming Soon</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="video" class="hero is-small">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+        <div class="publication-video">
+          <iframe width="1200" height="720" src="https://www.youtube.com/embed/D5cy8M1RekU"
+            title="SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </section>
+
+  <!--/Abstract -->
+  <section id="abstract" class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column container is-three-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified is-size-5">
+              <p>
+                While recent advances in co-speech gesture generation have achieved impressive rhythmic synchronization,
+                synthesizing gestures that are both semantically meaningful and faithful to a speaker's unique
+                non-verbal style remains an open challenge. Semantic gestures, such as iconic shapes or deictic
+                pointing, are statistically sparse, making them difficult to learn effectively within standard
+                generative models.
+              </p>
+              <p>
+                We present SiGnature, , a framework for Stylized and Semantic Gesture generation that reconciles precise
+                semantic control with high-fidelity style preservation.
+              </p>
+              <p>
+                Unlike prevalent methods that rely on entangled latent representations, SiGnature operates in an
+                explicit joint-rotation space. This design enables our core contribution, Joint Motion Integration
+                (JMI), a training-free inference mechanism capable of injecting any external motion sequence,
+                particularly in-the-wild semantic gestures, directly into the diffusion process. JMI automatically
+                identifies the specific ``active joints'' conveying a semantic action and injects them into the
+                generation, while relying on the diffusion backbone to synthesize the remaining body dynamics, including
+                posture and flow, in accordance with the pre-learned style of the target speaker. This allows for the
+                plug-and-play integration of arbitrary motions, including complex semantic gestures, without retraining
+                or introducing the ``Frankenstein'' artifacts typical of cut-and-paste methods.
+              </p>
+              <p>
+                Extensive experiments and perceptual studies demonstrate that SiGnature offers superior semantic motion
+                control while maintaining smooth and natural co-speech gesture generation and preserving the distinct
+                characteristics of the speaker, thereby outperforming state-of-the-art baselines.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+
+
+  <section id="Approach" class="section">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Approach</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-justified is-size-5">
+
+          <!-- Plain-language intro -->
+          <p>
+            Semantic gestures (pointing, iconic shapes, a thumbs-down) are rare in
+            training data, so standard co-speech models wash them out or snap them to generic
+            patterns. SiGnature keeps each speaker's personal motion style from a learned diffusion
+            backbone, then surgically injects the semantic gesture <em>only</em> into the joints that
+            carry its meaning, with no retraining and none of the "Frankenstein" artifacts of
+            cut-and-paste methods.
+            <br><br>
+          </p>
+
+          <img src="./images/architecture_v3_part1.png" class="interpolation-image" alt="architecture"
+            style="width: 100%; margin-bottom: 15px;">
+          <p>
+            <strong>Part I &mdash; Multimodal Diffusion Backbone.</strong>
+            We generate co-speech body motion directly in SMPL-X rotation space using a diffusion model.
+            Starting from Gaussian noise, the model iteratively denoises a motion sequence, conditioned
+            on the speaker's audio, transcript, and a global semantic embedding. Working in explicit
+            rotation space (rather than a compressed latent space) gives us smooth, jitter-free motion
+            and precise, per-joint control.
+            <br><br>
+          </p>
+
+          <img src="./images/architecture_v3_part2.png" class="interpolation-image" alt="architecture"
+            style="width: 100%; margin-bottom: 15px;">
+          <p>
+            <strong>Part II &mdash; Joint Motion Integration (JMI).</strong>
+            At inference time, we augment the pretrained backbone with a semantic gesture clip.
+            A <em>Find Active Joints</em> module automatically identifies which joints (and frames)
+            carry the gesture's meaning. JMI then injects only those joint trajectories into the
+            backbone's prediction at every diffusion step, while the backbone freely synthesizes the
+            rest of the body in the target speaker's own style. The result enforces the intended
+            semantic gesture while preserving the speaker's posture, flow, and personality -
+            all training-free.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section is-light" id="results">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Results</h2>
+
+      <!-- Same utterance, different speakers (carousel) -->
+      <div class="columns is-centered" style="margin-top: 30px;">
+        <div class="column is-full has-text-justified is-size-5">
+          <h3 class="title is-4 has-text-centered">Same Utterance, Different Speakers</h3>
+          <p class="has-text-centered">
+            The same speech driving different target speakers. Each keeps its own
+            personal motion style. Click a speaker to play it with audio.
+          </p>
+
+
+          <div class="gesture-carousel" id="utteranceCarousel">
+            <div class="gesture-nav">
+              <button id="uttPrev" aria-label="Previous utterance">&#9664;</button>
+              <div style="text-align:center">
+                <div class="gesture-counter" id="uttCounter"></div>
+              </div>
+              <button id="uttNext" aria-label="Next utterance">&#9654;</button>
+            </div>
+
+
+            <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_103_103_lawrence_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_103_103_ayana_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_103_103_wayne_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_103_103_scott_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_103_103_sophie_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_111_111_lawrence_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_111_111_ayana_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_111_111_wayne_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_111_111_scott_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_111_111_sophie_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_1_1_lawrence_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_1_1_wayne_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_1_1_scott_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_1_1_sophie_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_2_2_lawrence_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_2_2_wayne_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_2_2_scott_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_2_2_sophie_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_3_3_lawrence_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_3_3_wayne_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_3_3_scott_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata">
+                    <source src="./images/same_utterance_videos/utt_3_3_sophie_audio.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="gesture-slide utt-slide" data-gesture="">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata"><source src="./images/same_utterance_videos/utt_65_65_lawrence_audio.mp4" type="video/mp4"></video><p class="speaker-label">Lawrence</p></div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata"><source src="./images/same_utterance_videos/utt_65_65_ayana_audio.mp4" type="video/mp4"></video><p class="speaker-label">Ayana</p></div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata"><source src="./images/same_utterance_videos/utt_65_65_wayne_audio.mp4" type="video/mp4"></video><p class="speaker-label">Wayne</p></div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata"><source src="./images/same_utterance_videos/utt_65_65_scott_audio.mp4" type="video/mp4"></video><p class="speaker-label">Scott</p></div>
+                <div class="speaker-box"><video class="gesture-video utt-video" loop playsinline preload="metadata"><source src="./images/same_utterance_videos/utt_65_65_sophie_audio.mp4" type="video/mp4"></video><p class="speaker-label">Sophie</p></div>
+              </div>
+            </div> -->
+
+            <p class="is-size-6 has-text-centered" style="margin-top: 8px; color: #888;">
+              Click any speaker to play with audio.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Same gesture, different speakers (carousel) -->
+      <div class="columns is-centered" style="margin-top: 30px;">
+        <div class="column is-full has-text-justified is-size-5">
+          <h3 class="title is-4 has-text-centered">Same Gesture, Different Speakers</h3>
+          <p class="has-text-centered">
+            The same semantic gesture performed by five different speakers, each in their own personal style. Use the
+            arrows to browse gestures.
+          </p>
+
+          <div class="gesture-carousel" id="gestureCarousel">
+            <div class="gesture-nav">
+              <button id="gesturePrev" aria-label="Previous gesture">&#9664;</button>
+              <div style="text-align:center">
+                <span class="gesture-name" id="gestureName"></span>
+                <div class="gesture-counter" id="gestureCounter"></div>
+              </div>
+              <button id="gestureNext" aria-label="Next gesture">&#9654;</button>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Arms Explode">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_EXPLODE-2_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_EXPLODE-2_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_EXPLODE-2_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_EXPLODE-2_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_EXPLODE-2_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="gesture-slide" data-gesture="Fingers Talk">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FINGERS_TALK-5_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FINGERS_TALK-5_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FINGERS_TALK-5_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FINGERS_TALK-5_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FINGERS_TALK-5_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Fist Punch">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FIST_PUNCH-2_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FIST_PUNCH-2_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FIST_PUNCH-2_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FIST_PUNCH-2_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FIST_PUNCH-2_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Fists Collision">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FISTS_COLLISON-3_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FISTS_COLLISON-3_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FISTS_COLLISON-3_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FISTS_COLLISON-3_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FISTS_COLLISON-3_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="gesture-slide" data-gesture="Foot Tap">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOOT_TAP-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOOT_TAP-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOOT_TAP-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOOT_TAP-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOOT_TAP-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="gesture-slide" data-gesture="Forearm Throw Side">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREARM_THROW_SIDE-4_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREARM_THROW_SIDE-4_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREARM_THROW_SIDE-4_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREARM_THROW_SIDE-4_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREARM_THROW_SIDE-4_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="gesture-slide" data-gesture="Forefinger Point">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_POINT-3_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_POINT-3_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_POINT-3_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_POINT-3_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_POINT-3_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="gesture-slide" data-gesture="Forefinger Raise One">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_ONE-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_ONE-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_ONE-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_ONE-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_ONE-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Forefinger Raise Sky">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_SKY-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_SKY-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_SKY-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_SKY-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_RAISE_SKY-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Forefinger Spiral">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_SPIRAL-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_SPIRAL-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_SPIRAL-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_SPIRAL-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FOREFINGER_SPIRAL-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Hand Call">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HAND_CALL-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HAND_CALL-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HAND_CALL-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HAND_CALL-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HAND_CALL-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Hands Beast">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_BEAST-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_BEAST-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_BEAST-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_BEAST-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_BEAST-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="gesture-slide" data-gesture="Hands Explain">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_EXPLAIN-3_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_EXPLAIN-3_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_EXPLAIN-3_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_EXPLAIN-3_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_EXPLAIN-3_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="gesture-slide" data-gesture="Hands Steering">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_STEERING-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_STEERING-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_STEERING-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_STEERING-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/HANDS_STEERING-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Palms Up High">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/PALMS_UP_HIGH-2_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/PALMS_UP_HIGH-2_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/PALMS_UP_HIGH-2_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/PALMS_UP_HIGH-2_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/PALMS_UP_HIGH-2_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Shoulders Shrug">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/SHOULDERS_SHRUG-4_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/SHOULDERS_SHRUG-4_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/SHOULDERS_SHRUG-4_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/SHOULDERS_SHRUG-4_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/SHOULDERS_SHRUG-4_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Temple Shoot">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/TEMPLE_SHOOT-2_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/TEMPLE_SHOOT-2_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/TEMPLE_SHOOT-2_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/TEMPLE_SHOOT-2_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/TEMPLE_SHOOT-2_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Thumb Down">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/THUMB_DOWN-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/THUMB_DOWN-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/THUMB_DOWN-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/THUMB_DOWN-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/THUMB_DOWN-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Wrist Check Time">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/WRIST_CHECK_TIME-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/WRIST_CHECK_TIME-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/WRIST_CHECK_TIME-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/WRIST_CHECK_TIME-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/WRIST_CHECK_TIME-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Arms Welcome">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_WELCOME-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_WELCOME-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_WELCOME-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_WELCOME-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_WELCOME-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Arms Encompass">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_ENCOMPASS-3_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_ENCOMPASS-3_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_ENCOMPASS-3_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_ENCOMPASS-3_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/ARMS_ENCOMPASS-3_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="gesture-slide" data-gesture="Face Cover">
+              <div class="speaker-row">
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FACE_COVER-1_lawrence.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Lawrence</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FACE_COVER-1_ayana.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Ayana</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FACE_COVER-1_wayne.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Wayne</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FACE_COVER-1_scott.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Scott</p>
+                </div>
+                <div class="speaker-box"><video class="gesture-video" loop muted autoplay playsinline
+                    preload="metadata">
+                    <source src="./images/same_gesture_videos/FACE_COVER-1_sophie.mp4" type="video/mp4">
+                  </video>
+                  <p class="speaker-label">Sophie</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered" style="margin-top: 24px;">
+        <div class="column is-full has-text-justified is-size-5">
+          <h3 class="jmi-table-title has-text-centered">Style Preservation</h3>
+          <p class="is-size-6 has-text-centered" style="margin-bottom: 10px;">
+            <b>Style Preservation</b>
+            Style is captured implicitly by fine-tuning a separate personalized diffusion model per identity.
+            The table below evaluates our framework's ability to preserve target speaker identity during semantic
+            injection, preventing the speaker's distinctive signature style from being overwritten. Columns are the
+            ground-truth (GT) motions and rows are our generated results; <strong>lower is better</strong>. The
+            consistently low <strong>diagonal</strong> entries confirm that SiGnature synthesizes the target speaker's
+            gestural style, while the comparatively high <strong>off-diagonal</strong> entries show the model does not
+            suffer from style leakage or collapse into an "average" speaker. The last row (<em>Source SeG</em>) reveals
+            that the raw semantic gestures originate from a distinct, out-of-distribution style — contrasting these high
+            source scores with our low diagonal scores (e.g. Sophie: 5.19 &rarr; 1.87) shows that JMI avoids naive
+            motion-pasting, instead pulling the integrated semantic gesture back into the target speaker's specific
+            stylistic manifold. <span class="jmi-note">(Scores are &times;10; cross-identity FGD.)</span>
+          </p>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+              <thead>
+                <tr>
+                  <th class="has-text-left"></th>
+                  <th>Scott (GT)</th>
+                  <th>Wayne (GT)</th>
+                  <th>Ayana (GT)</th>
+                  <th>Sophie (GT)</th>
+                  <th>Lawr. (GT)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="has-text-left">Scott (Gen.)</td>
+                  <td><b>1.00</b></td>
+                  <td>3.07</td>
+                  <td>3.66</td>
+                  <td>3.55</td>
+                  <td>2.92</td>
+                </tr>
+                <tr>
+                  <td class="has-text-left">Wayne (Gen.)</td>
+                  <td>1.81</td>
+                  <td><b>1.28</b></td>
+                  <td>3.35</td>
+                  <td>2.84</td>
+                  <td>2.77</td>
+                </tr>
+                <tr>
+                  <td class="has-text-left">Ayana (Gen.)</td>
+                  <td>2.72</td>
+                  <td>3.06</td>
+                  <td><b>1.84</b></td>
+                  <td>3.40</td>
+                  <td>3.41</td>
+                </tr>
+                <tr>
+                  <td class="has-text-left">Sophie (Gen.)</td>
+                  <td>3.04</td>
+                  <td>3.88</td>
+                  <td>4.09</td>
+                  <td><b>1.87</b></td>
+                  <td>4.24</td>
+                </tr>
+                <tr>
+                  <td class="has-text-left">Lawr. (Gen.)</td>
+                  <td>1.36</td>
+                  <td>2.41</td>
+                  <td>3.11</td>
+                  <td>3.07</td>
+                  <td><b>1.18</b></td>
+                </tr>
+                <tr style="font-style: italic; border-top: 2px solid #888;">
+                  <td class="has-text-left">Source (SeG)</td>
+                  <td>3.68</td>
+                  <td>4.36</td>
+                  <td>4.57</td>
+                  <td>5.19</td>
+                  <td>3.22</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="jmi-table-section">
+        <h3 class="jmi-table-title">Style Preservation and Identity Leakage</h3>
+        <p class="jmi-table-desc">
+          Style is captured implicitly by fine-tuning a separate personalized diffusion model per identity.
+          The table below evaluates our framework's ability to preserve target speaker identity during semantic
+          injection, preventing the speaker's distinctive signature style from being overwritten. Columns are the
+          ground-truth (GT) motions and rows are our generated results; <strong>lower is better</strong>. The
+          consistently low <strong>diagonal</strong> entries confirm that SiGnature synthesizes the target speaker's
+          gestural style, while the comparatively high <strong>off-diagonal</strong> entries show the model does not
+          suffer from style leakage or collapse into an "average" speaker. The last row (<em>Source SeG</em>) reveals
+          that the raw semantic gestures originate from a distinct, out-of-distribution style — contrasting these high
+          source scores with our low diagonal scores (e.g. Sophie: 5.19 &rarr; 1.87) shows that JMI avoids naive
+          motion-pasting, instead pulling the integrated semantic gesture back into the target speaker's specific
+          stylistic manifold. <span class="jmi-note">(Scores are &times;10; cross-identity FGD.)</span>
+        </p>
+
+        <div class="jmi-table-wrap">
+          <table class="jmi-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Scott (GT)</th>
+                <th>Wayne (GT)</th>
+                <th>Ayana (GT)</th>
+                <th>Sophie (GT)</th>
+                <th>Lawr. (GT)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="row-head">Scott (Gen.)</th>
+                <td class="diag">1.00</td>
+                <td>3.07</td>
+                <td>3.66</td>
+                <td>3.55</td>
+                <td>2.92</td>
+              </tr>
+              <tr>
+                <th class="row-head">Wayne (Gen.)</th>
+                <td>1.81</td>
+                <td class="diag">1.28</td>
+                <td>3.35</td>
+                <td>2.84</td>
+                <td>2.77</td>
+              </tr>
+              <tr>
+                <th class="row-head">Ayana (Gen.)</th>
+                <td>2.72</td>
+                <td>3.06</td>
+                <td class="diag">1.84</td>
+                <td>3.40</td>
+                <td>3.41</td>
+              </tr>
+              <tr>
+                <th class="row-head">Sophie (Gen.)</th>
+                <td>3.04</td>
+                <td>3.88</td>
+                <td>4.09</td>
+                <td class="diag">1.87</td>
+                <td>4.24</td>
+              </tr>
+              <tr>
+                <th class="row-head">Lawr. (Gen.)</th>
+                <td>1.36</td>
+                <td>2.41</td>
+                <td>3.11</td>
+                <td>3.07</td>
+                <td class="diag">1.18</td>
+              </tr>
+              <tr class="source-row">
+                <th class="row-head"><em>Source (SeG)</em></th>
+                <td><em>3.68</em></td>
+                <td><em>4.36</em></td>
+                <td><em>4.57</em></td>
+                <td><em>5.19</em></td>
+                <td><em>3.22</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+
+    </div>
+
+    <!-- Backbone comparison -->
+    <div class="columns is-centered" style="margin-top: 30px;">
+      <div class="column is-four-fifths has-text-justified is-size-5">
+        <h3 class="title is-4 has-text-centered">Co-Speech Backbone vs. State of the Art</h3>
+        <p class="has-text-centered">
+          Before any semantic injection, our diffusion backbone alone produces co-speech
+          gestures that are markedly smoother than latent-space baselines. By generating motion
+          directly in explicit rotation space, we achieve the lowest jerk and acceleration while
+          keeping the highest motion diversity &mdash; a property we call <em>active smoothness</em>:
+          motion that is physically clean yet highly dynamic.
+        </p>
+
+        <div class="gesture-carousel" id="comparisonCarousel">
+          <div class="gesture-nav">
+            <button id="compPrev" aria-label="Previous comparison">&#9664;</button>
+            <div style="text-align:center">
+              <span class="gesture-name" id="compName"></span>
+              <div class="gesture-counter" id="compCounter"></div>
+            </div>
+            <button id="compNext" aria-label="Next comparison">&#9654;</button>
+          </div>
+
+          <div class="gesture-slide comp-slide" data-gesture="Example 1">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_1_1_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 2">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_2_2_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 3">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_3_3_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 4">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_4_4_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 5">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_5_5_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 6">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_6_6_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 7">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_7_7_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 8">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_65_65_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 9">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_73_73_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 10">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_81_81_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 11">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_103_103_video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="gesture-slide comp-slide" data-gesture="Example 12">
+            <video controls loop autoplay muted playsinline width="100%">
+              <source src="./images/comparison_videos/2_scott_0_111_111_video.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth has-text-centered">
+            <thead>
+              <tr>
+                <th class="has-text-left">Method</th>
+                <th>FGD &darr;</th>
+                <th>Diversity &uarr;</th>
+                <th>BC &uarr;</th>
+                <th>Jerk &darr;</th>
+                <th>Accel &darr;</th>
+                <th>FPS &uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="has-text-left">EMAGE</td>
+                <td>5.54</td>
+                <td>13.08</td>
+                <td><b>7.70</b></td>
+                <td>66.76</td>
+                <td>4.16</td>
+                <td>925</td>
+              </tr>
+              <tr>
+                <td class="has-text-left">SynTalker</td>
+                <td>4.66</td>
+                <td>12.30</td>
+                <td>7.37</td>
+                <td>55.40</td>
+                <td>3.40</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <td class="has-text-left">GestureLSM (Diffusion)</td>
+                <td>4.10</td>
+                <td>12.56</td>
+                <td>7.35</td>
+                <td>57.73</td>
+                <td>3.47</td>
+                <td>399</td>
+              </tr>
+              <tr>
+                <td class="has-text-left">GestureLSM (MeanFlow)</td>
+                <td><b>4.04</b></td>
+                <td>12.46</td>
+                <td>7.45</td>
+                <td>61.16</td>
+                <td>3.69</td>
+                <td>1890</td>
+              </tr>
+              <tr style="font-style: italic;">
+                <td class="has-text-left">Ground Truth</td>
+                <td>0.00</td>
+                <td>13.09</td>
+                <td>6.83</td>
+                <td>42.13</td>
+                <td>3.03</td>
+                <td>&ndash;</td>
+              </tr>
+              <tr style="background-color: #eef6ff;">
+                <td class="has-text-left"><b>Ours (1k steps)</b></td>
+                <td>4.72</td>
+                <td><b>13.66</b></td>
+                <td>6.81</td>
+                <td>34.91</td>
+                <td>2.60</td>
+                <td>55</td>
+              </tr>
+              <tr style="background-color: #eef6ff;">
+                <td class="has-text-left"><b>Ours (20 steps)</b></td>
+                <td>5.48</td>
+                <td>13.29</td>
+                <td>6.84</td>
+                <td><b>33.99</b></td>
+                <td><b>2.59</b></td>
+                <td><b>2802</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="is-size-6 has-text-centered" style="margin-top: 8px;">
+          Standard metrics (FGD, Diversity, BC) are &times;10<sup>&minus;1</sup>.
+          Best results among generated methods are in <b>bold</b>.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- JMI vs baseline
+    <div class="columns is-centered" style="margin-top: 30px;">
+      <div class="column is-four-fifths has-text-justified is-size-5">
+        <h3 class="title is-4 has-text-centered">JMI vs. Naive Injection</h3>
+        <p>
+          Forcing the source gesture onto all joints (naive in-betweening) overwrites the speaker's
+          identity and introduces artifacts. JMI injects only the active joints, recovering natural,
+          style-consistent motion.
+        </p>
+        <video controls loop autoplay muted playsinline width="100%">
+          <source src="./static/videos/jmi_vs_baseline.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div> -->
+  </section>
+
+  <section class="section" id="Acknowledgements">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="centered-text title is-3">Acknowledgements</h2>
+      <p>This work was partially supported by the Horizon 2020 FET Proactive project GuestXR (#101017884),
+        the Israel Science Foundation (Grant no. 1427/25), and the Joint NSFC-ISF Research (Grant no. 3077/23).</p>
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-4 has-text-centered">BibTeX</h2>
+      <pre style="background: #f5f5f5; padding: 1.2em; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;"><code>@inproceedings{SiGnature@Rosenthal2026,
+  Author = {Adi Rosenthal and Tomer Koren and Nadav Shaked and Doron Friedman and Ariel Shamir},
+  Title = {SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation},
+  Year = {2026},
+  Eprint = {arXiv:2606.15889},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered" style="font-size: 0.9rem; color: #666;">
+            <p>
+              Website source code based on the <a
+                href="https://github.com/nerfies/nerfies.github.io/tree/main">Nerfies</a> project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Generic carousel initializer
+      function initCarousel(containerSelector, prevId, nextId, nameId, counterId) {
+        var slides = document.querySelectorAll(containerSelector + ' .gesture-slide');
+        var nameEl = document.getElementById(nameId);
+        var counterEl = document.getElementById(counterId);
+        var idx = 0;
+
+        function showSlide(i) {
+          slides[idx].classList.remove('active');
+          slides[idx].querySelectorAll('video').forEach(function (v) { v.pause(); v.currentTime = 0; });
+          idx = (i + slides.length) % slides.length;
+          slides[idx].classList.add('active');
+          nameEl.textContent = slides[idx].getAttribute('data-gesture');
+          counterEl.textContent = (idx + 1) + ' / ' + slides.length;
+          slides[idx].querySelectorAll('video').forEach(function (v) { v.currentTime = 0; v.play(); });
+        }
+
+        if (slides.length) {
+          showSlide(0);
+          document.getElementById(prevId).addEventListener('click', function () { showSlide(idx - 1); });
+          document.getElementById(nextId).addEventListener('click', function () { showSlide(idx + 1); });
+        }
+      }
+
+      // Utterance carousel (click individual speaker to play with audio)
+      (function () {
+        var container = document.querySelector('#utteranceCarousel');
+        var slides = container.querySelectorAll('.gesture-slide');
+        var counterEl = document.getElementById('uttCounter');
+        var allUttVids = container.querySelectorAll('.utt-video');
+        var idx = 0;
+
+        function stopAll() {
+          allUttVids.forEach(function (v) { v.pause(); v.currentTime = 0; });
+        }
+
+        function showSlide(i) {
+          stopAll();
+          slides[idx].classList.remove('active');
+          idx = (i + slides.length) % slides.length;
+          slides[idx].classList.add('active');
+          counterEl.textContent = (idx + 1) + ' / ' + slides.length;
+        }
+
+        allUttVids.forEach(function (vid) {
+          vid.addEventListener('click', function () {
+            if (!vid.paused) {
+              vid.pause();
+            } else {
+              stopAll();
+              vid.currentTime = 0;
+              vid.play();
+            }
+          });
+        });
+
+        if (slides.length) {
+          showSlide(0);
+          document.getElementById('uttPrev').addEventListener('click', function () { showSlide(idx - 1); });
+          document.getElementById('uttNext').addEventListener('click', function () { showSlide(idx + 1); });
+        }
+      })();
+
+      initCarousel('#gestureCarousel', 'gesturePrev', 'gestureNext', 'gestureName', 'gestureCounter');
+      initCarousel('#comparisonCarousel', 'compPrev', 'compNext', 'compName', 'compCounter');
+    });
+  </script>
+</body>
+
+</html>

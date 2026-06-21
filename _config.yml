@@ -1,0 +1,31 @@
+# Jekyll Configuration for GitHub Pages
+
+title: "Progressive Photorealistic Abstraction"
+description: "Realism and abstraction can coexist. A new perspective on image abstraction through progressive photorealistic simplification."
+url: "https://yourusername.github.io/Progressive_Photorealistic_Abstraction"
+baseurl: "/Progressive_Photorealistic_Abstraction"
+
+# Author Information
+author: "Your Name"
+author_email: "your.email@example.com"
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - README.md
+  - .DS_Store
+
+# Collections and Defaults
+collections_dir: .
+include:
+  - .htaccess
+
+# Minimal Mistakes Theme Settings (optional, if using remote theme)
+remote_theme: null
