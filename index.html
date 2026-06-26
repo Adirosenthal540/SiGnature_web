@@ -2,6 +2,35 @@
 <html>
 
 <head>
+  <style>
+  /* Tighten body text sizing across the page */
+  .content.is-size-5,
+  .column.is-size-5,
+  p.is-size-5 {
+    font-size: 1rem !important;
+    line-height: 1.6;
+  }
+
+  /* Abstract: a touch smaller and easier to scan */
+  #abstract .content.is-size-5 p {
+    font-size: 0.95rem;
+    margin-bottom: 0.9em;
+  }
+
+  /* Section headings: scale down slightly so they don't dwarf the body */
+  .title.is-3 { font-size: 1.75rem; }
+  .title.is-4 { font-size: 1.3rem; }
+
+  /* Approach + Results explanatory paragraphs */
+  #Approach .column.is-size-5 p,
+  #results .column.is-size-5 p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* Captions / notes stay compact */
+  .is-size-6 { font-size: 0.85rem !important; }
+</style>
   <meta charset="utf-8">
   <meta name="description" content="SiGnature: Explicit Motion Diffusion for Stylized Semantic Gesture Generation">
   <meta name="keywords" content="gesture generation, motion diffusion, semantic gesture generation">
